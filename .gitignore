@@ -1,0 +1,8 @@
+# Source PDF (large binary — keep locally, not pushed to git)
+source/original/*.pdf
+source/extracted/
+
+# OS junk
+.DS_Store
+Thumbs.db
+*.swp
