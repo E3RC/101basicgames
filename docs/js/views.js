@@ -183,5 +183,7 @@ Views.renderAbout = function(data) {
     '</ul>' +
     '<h2>Technical Notes</h2>' +
     '<p>This site is built with vanilla JavaScript and CSS. No frameworks, no build tools &mdash; just the way the pioneers did it. Games are data-driven from a JSON catalog. The terminal interface emulates the teletype-style interaction of the original BASIC programs.</p>' +
+    '<h2>Colophon</h2>' +
+    '<p>This entire project was built using <a href="https://github.com/anomalyco/opencode" target="_blank" rel="noopener">OpenCode</a>, an open-source AI coding assistant. All game implementations and site infrastructure were generated entirely with free AI models — no paid APIs, no proprietary tools, no human-written code. Proof that open-source AI can build real, playable software from scratch.</p>' +
     '</div>';
 };
