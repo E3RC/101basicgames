@@ -124,41 +124,7 @@ Views.renderCategories = function(data) {
     '<div class="categories-grid">' + cards + '</div>';
 };
 
-Views.renderAbout = function(data) {
-  var games = data && data.games || [];
-  var total = games.length;
-  var playable = games.filter(function(g) { return g.dialect && g.dialect !== 'No code'; }).length;
-  var catCounts = {};
-  games.forEach(function(g) { catCounts[g.category] = (catCounts[g.category] || 0) + 1; });
-  var cats = Object.keys(catCounts).sort();
-  var withCode = games.filter(function(g) { return g.dialect && g.dialect !== 'No code'; }).length;
-  var dialects = games.filter(function(g, i, a) { return g.dialect && a.findIndex(function(x) { return x.dialect === g.dialect; }) === i; }).length;
-
-  var maxCat = cats.reduce(function(best, c) { return catCounts[c] > catCounts[best] ? c : best; }, cats[0]);
-
-  var statsHtml = [
-    { label: 'Total Games', value: total },
-    { label: 'Playable', value: playable },
-    { label: 'Categories', value: cats.length },
-    { label: 'With Source Code', value: withCode },
-    { label: 'BASIC Dialects', value: dialects },
-    { label: 'Largest Category', value: capitalize(maxCat) + ' (' + catCounts[maxCat] + ')' }
-  ].map(function(s) {
-    return '<div class="stat-card"><div class="stat-value">' + s.value + '</div><div class="stat-label">' + s.label + '</div></div>';
-  }).join('\n');
-
-  var catHtml = cats.map(function(c) {
-    var count = catCounts[c];
-    var pct = Math.round(count / total * 100);
-    return '<div style="margin-bottom:0.75rem;">' +
-      '<div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--fg-dim);">' +
-      '<span>' + capitalize(c) + '</span>' +
-      '<span>' + count + ' (' + pct + '%)</span>' +
-      '</div>' +
-      '<div class="progress-bar"><div class="progress-bar-fill" style="width:' + pct + '%;"></div></div>' +
-      '</div>';
-  }).join('\n');
-
+Views.renderAbout = function() {
   return '<div class="about-content">' +
     '<h2>About This Project</h2>' +
     '<p><em>101 BASIC Computer Games</em> (originally published as <em>101 BASIC Computer Games</em> in 1973, later republished as <em>BASIC Computer Games</em> in 1978) is a landmark book by David H. Ahl that helped spark the home computer revolution. It contains the source code for over 100 games written in the BASIC programming language, designed to be typed in and run on a variety of early computer systems.</p>' +
@@ -168,11 +134,6 @@ Views.renderAbout = function(data) {
     '<li>Playable terminal-style recreations of all 106 games</li>' +
     '<li>Historical reference information including original BASIC source code where available</li>' +
     '</ul>' +
-
-    '<h2>Project Stats</h2>' +
-    '<div class="progress-stats">' + statsHtml + '</div>' +
-    '<h3 style="font-family:var(--font-mono);font-size:1rem;color:var(--accent);margin-bottom:1rem;">Games by Category</h3>' +
-    catHtml +
 
     '<h2>Attribution</h2>' +
     '<p>All game titles, descriptions, and BASIC source code are the intellectual property of their original authors as published in the book. This is an educational, non-commercial fan project.</p>' +
