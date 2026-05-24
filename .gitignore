@@ -2,6 +2,13 @@
 source/original/*.pdf
 source/extracted/
 
+# Dev artifacts
+test.txt
+test_parser.py
+
+# Third-party binaries
+itextsharp.zip
+
 # OS junk
 .DS_Store
 Thumbs.db
