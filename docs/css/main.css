@@ -533,6 +533,69 @@ a:hover { text-decoration: underline; }
   border-radius: 4px;
 }
 
+/* Content Warning Overlay */
+.warning-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.warning-modal {
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  max-width: 560px;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.warning-modal .warning-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.warning-modal h2 {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.warning-modal p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--fg);
+  margin-bottom: 0.75rem;
+}
+
+.warning-modal .warning-note {
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.warning-modal .btn {
+  margin-top: 1.25rem;
+  min-width: 140px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .warning-modal { padding: 1.5rem; }
+  .warning-modal h2 { font-size: 0.95rem; }
+  .warning-modal p { font-size: 0.8rem; }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .site-header { flex-wrap: wrap; gap: 0.75rem; }

@@ -32,6 +32,7 @@
     switch (view) {
       case 'home':
         render(Views.renderHome, { games: GAMES });
+        showContentWarning();
         break;
       case 'catalog':
         renderCatalog();
@@ -44,6 +45,29 @@
         render(Views.renderAbout, { games: GAMES });
         break;
     }
+  }
+
+  function showContentWarning() {
+    if (localStorage.getItem('warningDismissed')) return;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'warning-overlay';
+    overlay.innerHTML =
+      '<div class="warning-modal">' +
+        '<div class="warning-icon">&#9888;</div>' +
+        '<h2>Content Advisory</h2>' +
+        '<p>This archive contains games from 1973, recreated as historical artifacts. Some of the original BASIC programs reflect cultural attitudes, stereotypes, and depictions that were common at the time but are outdated and harmful today.</p>' +
+        '<p>These games are preserved for historical and educational purposes. The inclusion of any game does not imply endorsement of its content or themes.</p>' +
+        '<p class="warning-note">We have chosen to present these games as originally conceived, with this advisory, so they may be understood in their proper historical context.</p>' +
+        '<button class="btn btn-primary" id="warning-dismiss">Acknowledge &amp; Continue</button>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    document.getElementById('warning-dismiss').addEventListener('click', function() {
+      localStorage.setItem('warningDismissed', '1');
+      overlay.remove();
+    });
   }
 
   function renderCatalog() {
